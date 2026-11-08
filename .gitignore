@@ -1,0 +1,48 @@
+# 密钥与本地配置
+.env
+.env.*
+!.env.example
+*apikey*
+*.key
+*.pem
+secrets.*
+credentials.*
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.ipynb_checkpoints/
+.pytest_cache/
+*.egg-info/
+dist/
+build/
+
+# 不上传的资料：版权 / 体积 / 隐私
+*.pdf
+*.doc
+*.docx
+*.ppt
+*.pptx
+*.mp4
+*.mov
+*.exe
+*.rar
+*.zip
+*.7z
+*.tar.gz
+data/private/
+
+# 模型权重与缓存
+*.pt
+*.pth
+*.bin
+*.safetensors
+*.gguf
+.cache/
+*.log
+
+# 系统
+.DS_Store
+Thumbs.db

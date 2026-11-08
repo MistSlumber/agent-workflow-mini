@@ -1,0 +1,56 @@
+{
+  "task": "处理订单 B-2002 的退款申请",
+  "step": 3,
+  "done": true,
+  "context": {
+    "last_observation": {
+      "escalated": true,
+      "reason": "不满足自动退款条件"
+    }
+  },
+  "trace": [
+    {
+      "step": 1,
+      "tool": "lookup_order",
+      "args": {
+        "order_id": "B-2002"
+      },
+      "ok": true,
+      "error": "",
+      "observation": {
+        "order_id": "B-2002",
+        "amount": 899.0,
+        "days": 42,
+        "status": "paid"
+      }
+    },
+    {
+      "step": 2,
+      "tool": "check_refund",
+      "args": {
+        "amount": 899.0,
+        "days": 42
+      },
+      "ok": true,
+      "error": "",
+      "observation": {
+        "eligible": false,
+        "amount": 899.0,
+        "days": 42
+      }
+    },
+    {
+      "step": 3,
+      "tool": "escalate",
+      "args": {
+        "reason": "不满足自动退款条件"
+      },
+      "ok": true,
+      "error": "",
+      "observation": {
+        "escalated": true,
+        "reason": "不满足自动退款条件"
+      }
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.11", "3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Compile
+        run: python -m compileall -q src scripts
+      - name: Unit tests
+        run: python -m unittest discover -s tests -v
+      - name: Smoke demo
+        run: |
+          for f in scripts/run_demo.py scripts/run_benchmark.py scripts/cost_report.py examples/support_agent.py; do
+            if [ -f "$f" ]; then python "$f" > /dev/null; fi
+          done

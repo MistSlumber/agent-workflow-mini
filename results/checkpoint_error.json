@@ -1,0 +1,36 @@
+{
+  "task": "处理订单 C-9999 的退款申请",
+  "step": 2,
+  "done": true,
+  "context": {
+    "last_observation": {
+      "escalated": true,
+      "reason": "tool error: '订单不存在: C-9999'"
+    }
+  },
+  "trace": [
+    {
+      "step": 1,
+      "tool": "lookup_order",
+      "args": {
+        "order_id": "C-9999"
+      },
+      "ok": false,
+      "error": "'订单不存在: C-9999'",
+      "observation": null
+    },
+    {
+      "step": 2,
+      "tool": "escalate",
+      "args": {
+        "reason": "tool error: '订单不存在: C-9999'"
+      },
+      "ok": true,
+      "error": "",
+      "observation": {
+        "escalated": true,
+        "reason": "tool error: '订单不存在: C-9999'"
+      }
+    }
+  ]
+}

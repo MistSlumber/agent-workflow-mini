@@ -1,0 +1,59 @@
+{
+  "task": "处理订单 A-1001 的退款申请",
+  "step": 3,
+  "done": true,
+  "context": {
+    "last_observation": {
+      "refunded": true,
+      "order_id": "A-1001",
+      "amount": 128.0
+    }
+  },
+  "trace": [
+    {
+      "step": 1,
+      "tool": "lookup_order",
+      "args": {
+        "order_id": "A-1001"
+      },
+      "ok": true,
+      "error": "",
+      "observation": {
+        "order_id": "A-1001",
+        "amount": 128.0,
+        "days": 3,
+        "status": "paid"
+      }
+    },
+    {
+      "step": 2,
+      "tool": "check_refund",
+      "args": {
+        "amount": 128.0,
+        "days": 3
+      },
+      "ok": true,
+      "error": "",
+      "observation": {
+        "eligible": true,
+        "amount": 128.0,
+        "days": 3
+      }
+    },
+    {
+      "step": 3,
+      "tool": "issue_refund",
+      "args": {
+        "order_id": "A-1001",
+        "amount": 128.0
+      },
+      "ok": true,
+      "error": "",
+      "observation": {
+        "refunded": true,
+        "order_id": "A-1001",
+        "amount": 128.0
+      }
+    }
+  ]
+}
